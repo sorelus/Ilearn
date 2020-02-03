@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginView from './components/Login'
+import Navigation from './Navigator/navigate'
 
 export default function App() {
   return (
-    <LoginView/> 
+    <Navigation/>
   );
 }
 

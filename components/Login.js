@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,TouchableOpacity } from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,7 +18,8 @@ text ={
 }
 
   onClickListener = (viewId) => {
-    Alert.alert("Alert", "Button pressed "+viewId);
+    //Alert.alert("Alert", "Button pressed "+viewId);
+     this.props.navigation.navigate("Selection");
   }
 
   render() {
@@ -45,13 +46,13 @@ text ={
           <Text style={styles.loginText}>{this.text.signin}</Text>
         </TouchableHighlight>
         <TouchableHighlight  onPress={() => this.onClickListener('restore_password')}>
-              <Text style={{color: 'blue'}}>
-              Sign Up,
-              <Text style={{color: 'black'}}>
-                {'\t'} if you are a new user
+                <Text style={{color: 'blue'}}>
+                Sign Up,
+                <Text style={{color: 'black'}}>
+                  {'\t'} if you are a new user
+                </Text>
               </Text>
-            </Text>
-            </TouchableHighlight>
+        </TouchableHighlight>
       </View>
     );
   }
