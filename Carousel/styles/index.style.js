@@ -14,16 +14,23 @@ export default StyleSheet.create({
     },
     container: {
         flex: 1,
+
         backgroundColor: colors.background1
     },
     gradient: {
         ...StyleSheet.absoluteFillObject
     },
     scrollview: {
+        marginTop: 30,
+        flex: 1
+    },
+    scrollview2: {
         flex: 1
     },
     exampleContainer: {
-        paddingVertical: 30
+        marginTop: 1,
+        marginTop: 5,
+        paddingVertical: 3
     },
     exampleContainerDark: {
         backgroundColor: colors.black
