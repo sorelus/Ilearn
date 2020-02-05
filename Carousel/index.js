@@ -3,10 +3,11 @@ import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView ,TouchableOpa
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
 import SliderEntry from './components/SliderEntry';
-import styles, { colors } from './styles/index.style';
-import { ENTRIES1,ENTRIES2 } from './static/entries';
+import styles from './styles/index.style';
+import { ENTRIES1 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import * as Progress from 'react-native-progress';
+import { colors } from '../assets/commons';
 import {
   StyleSheet,
   TextInput,
@@ -16,7 +17,7 @@ import {
   Alert
 } from 'react-native';
 
-const SLIDER_1_FIRST_ITEM = 1;
+const SLIDER_1_FIRST_ITEM = 3;
 
 export default class example extends Component {
 
@@ -58,6 +59,7 @@ export default class example extends Component {
                   itemWidth={itemWidth}
                   hasParallaxImages={true}
                   inactiveSlideOpacity={0.6}
+                  loop={true}
                   onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
                 />
 
@@ -116,10 +118,37 @@ export default class example extends Component {
             </TouchableOpacity>
         );
     }
+    linebuild () {
+      return(
+        <View
+          style={{
+            borderBottomColor: colors.primary,
+            borderBottomWidth: 3,
+            marginLeft: 20,
+            marginRight: 20,
+            borderRadius:8,
+          }}
+        />
+      );
+    }
+    title(text){
+      return(
+        <Text style={{
+          fontSize: 18,
+          marginTop: 10,
+          marginBottom: 1,
+          marginLeft: 20,
+          marginRight: 20,
+          fontWeight: 'bold',
+          color : colors.primary
+        }} >{text}</Text>
+      );
+    }
     render () {
         const book = this.createFeaturedCourse();
         const cre = this.createPurchasedBox('Physical A level','Prof Clebert Sorel','12');
         const creWithout = this.createPurchasedBoxWithoutProgressiveBar('French A level','Prof Nadeem ');
+        const line = this.linebuild();
         return (
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.container}>
@@ -129,71 +158,36 @@ export default class example extends Component {
                       directionalLockEnabled={true}
                     >
 
-                     <Text style={{
-                       fontSize: 15,
-                       marginTop: 10,
-                       marginBottom: 5,
-                       marginLeft: 20,
-                       marginRight: 20,
-                     }} >Featured Courses</Text>
-                     <View
-                       style={{
-                         borderBottomColor: 'black',
-                         borderBottomWidth: 2,
-                         marginBottom: 5,
-                         marginLeft: 20,
-                         marginRight: 20,
-                       }}
-                     />
-                        { book }
+                      {this.title('Featured Courses')}
+                      {line}
+                      { book }
 
-                        <Text style={{
-                          fontSize: 15,
-                          marginTop: 10,
-                          marginBottom: 5,
-                          marginLeft: 20,
-                          marginRight: 20,
-                        }} >Purchased Courses</Text>
+                        <View style={{
+                          paddingBottom : 30,
+                          margin: 4,
 
-                        <View
-                          style={{
-                            borderBottomColor: 'black',
-                            borderBottomWidth: 2,
-                            marginLeft: 20,
-                            marginRight: 20,
-                          }}
-                        />
-
+                        }}>
+                        {line}
+                        {this.title('Purchased Courses')}
                         <ScrollView
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        style={{
-                          paddingBottom : 30
-                        }}
-                        >
-                          { cre }
-                          { cre }
-                          { cre }
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            >
+                              { cre }
+                              { cre }
+                              { cre }
 
-                        </ScrollView>
+                          </ScrollView>
+                          </View>
 
-                        <Text style={{
-                          fontSize: 15,
-                          marginTop: 10,
-                          marginBottom: 5,
-                          marginLeft: 20,
-                          marginRight: 20,
-                        }} >Related Courses</Text>
+                        {line}
+                        <View style={{
+                          paddingBottom : 30,
+                          margin: 4,
 
-                        <View
-                          style={{
-                            borderBottomColor: 'black',
-                            borderBottomWidth: 2,
-                            marginLeft: 20,
-                            marginRight: 20,
-                          }}
-                        />
-                        <ScrollView
+                        }}>
+                        {this.title('Related Courses')}
+                      <ScrollView
                         showsHorizontalScrollIndicator={false}
                           horizontal={true}
                         style={{
@@ -207,7 +201,7 @@ export default class example extends Component {
                           { creWithout }
                           { creWithout }
                         </ScrollView>
-
+                      </View>
                     </ScrollView>
                 </View>
             </SafeAreaView>

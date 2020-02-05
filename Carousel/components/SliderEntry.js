@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity ,Alert} from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry.style';
@@ -7,8 +7,8 @@ import styles from '../styles/SliderEntry.style';
 export default class SliderEntry extends Component {
 
   onClickListener = (viewId) => {
-    //Alert.alert("Alert", "Button pressed "+viewId);
-     this.props.navigation.navigate("Video");
+    Alert.alert("Alert", "Button pressed "+viewId);
+     //this.props.navigation.navigate("Video");
   }
 
     static propTypes = {
